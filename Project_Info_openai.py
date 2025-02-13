@@ -54,7 +54,7 @@ def get_response(prompt):
     full_prompt = f"Document Context:\n{context}\n\nUser Query: {prompt}"
     
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4.0-turbo",
         messages=[
             {"role": "system", "content": "You are an assistant helping with document-based queries."},
             {"role": "user", "content": full_prompt}
