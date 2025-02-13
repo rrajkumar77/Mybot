@@ -64,13 +64,20 @@ def get_response(prompt):
 
 # Function to format response into a table
 def format_response_to_table(response):
+    fields = [
+        "Project Name", "Project overview", "Over All Team split", "Full-time employees", 
+        "Contractor resources", "Skills used", "Project Scope", "Consultant contribution", 
+        "Impact on the client/organization", "Challenges faced", "Project roadmap"
+    ]
+    details = response.split("\n")
+    
+    # Ensure the lengths match
+    if len(details) != len(fields):
+        details += ["NA"] * (len(fields) - len(details))
+    
     data = {
-        "Field": [
-            "Project Name", "Project overview", "Over All Team split", "Full-time employees", 
-            "Contractor resources", "Skills used", "Project Scope", "Consultant contribution", 
-            "Impact on the client/organization", "Challenges faced", "Project roadmap"
-        ],
-        "Details": response.split("\n")
+        "Field": fields,
+        "Details": details
     }
     return pd.DataFrame(data)
 
